@@ -25,9 +25,9 @@ Vagrant.configure("2") do |config|
   # Forward MySql port on 33066, used for connecting admin-clients to localhost:33066
   config.vm.network :forwarded_port, guest: 3306, host: 33066
   # Forward http port on 8080, used for connecting web browsers to localhost:8080
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  # config.vm.network :forwarded_port, guest: 80, host: 8080
   # Forward http port on 8025, used for connecting web browsers to MailHog
-  config.vm.network :forwarded_port, guest: 8025, host: 8025
+  # config.vm.network :forwarded_port, guest: 8025, host: 8025
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -35,6 +35,7 @@ Vagrant.configure("2") do |config|
 
   # Set share folder permissions to 777 so that apache can write files
   config.vm.synced_folder ".", "/vagrant", mount_options: ['dmode=777','fmode=666']
+  config.vm.synced_folder "/Users/sondh/", "/Users/sondh", mount_options: ['dmode=777','fmode=777']
 
   # Provider-specific configuration so you can fine-tune VirtualBox for Vagrant.
   # These expose provider-specific options.
@@ -54,8 +55,8 @@ Vagrant.configure("2") do |config|
 
     # List of recipes to run
     chef.add_recipe "vagrant_main"
-    chef.add_recipe "vagrant_main::nodejs"
-    chef.add_recipe "vagrant_main::wordpress"
-    chef.add_recipe "vagrant_main::magento"
+    # chef.add_recipe "vagrant_main::nodejs"
+    # chef.add_recipe "vagrant_main::wordpress"
+    # chef.add_recipe "vagrant_main::magento"
   end
 end
